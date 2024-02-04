@@ -3,6 +3,7 @@ const mysql=require('mysql');
 
 const app=express();
 const port=3000; // use localhost:3000
+const cors = require('cors');
 
 const connect=mysql.createPool({
   connectionLimit: 10,
@@ -12,6 +13,7 @@ const connect=mysql.createPool({
   database: 'keybodo',
 });
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/api/data', (req,res)=>{
