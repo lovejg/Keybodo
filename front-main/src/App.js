@@ -25,10 +25,20 @@ function App() {
   // 화면에 데이터를 렌더링
   return (
     <div>
-      <h1>Data from MySQL</h1>
       <ul>
         {data.map((item) => (
-          <li key={`switch-${item.switch_id}`}>{item.switch_name}</li>
+          <li key={`switch-${item.switch_id}`}>
+          {item.switch_name}
+          <ul>
+            <li>동작 방식: {item.switch_method}</li>
+            <li>스위치: {item.switch_type}</li>
+            <li>피치(pitch): {item.pitch}</li>
+            <li>키압(바닥압 기준): {item.spring_force}g</li>
+            <li>가격: ${item.switch_price}</li>
+            <li>제조사: {item.maker}</li>
+            <li><a href={item.infolink} target="_blank" rel="noopener noreferrer">More Info</a></li>
+          </ul>
+        </li>
         ))}
       </ul>
     </div>
