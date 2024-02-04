@@ -2,8 +2,8 @@ const express=require('express');
 const mysql=require('mysql');
 
 const app=express();
-const port=3000; // use localhost:3000
-const cors = require('cors');
+const port=3001; // use localhost:3001 (react가 3000을 써서 3001로 변경)
+const cors = require('cors'); // 혹시 모를 정책 대비
 
 const connect=mysql.createPool({
   connectionLimit: 10,
@@ -25,5 +25,5 @@ app.get('/api/data', (req,res)=>{
 });
 
 app.listen(port, () => {
-  console.log('Start running server on port 3000');
+  console.log('Start running server on port 3001');
 });

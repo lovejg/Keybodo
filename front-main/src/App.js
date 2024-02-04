@@ -14,7 +14,7 @@ function App() {
   const fetchData = async () => {
     try {
       // axios를 사용하여 데이터 요청
-      const response = await axios.get('http://localhost:3000/api/data');
+      const response = await axios.get('http://localhost:3001/api/data'); // 사용 포트 명시해주기(db는 3001)
       console.log(response.data);
       setData(response.data); // 가져온 데이터를 상태에 저장
     } catch (error) {
