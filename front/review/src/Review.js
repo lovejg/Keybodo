@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { database } from './firebase_DB';
-import { ref, push, set, serverTimestamp } from 'firebase/database';
+import { ref, push, set, serverTimestamp, onValue } from 'firebase/database';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Review.css';
@@ -8,6 +8,24 @@ import './Review.css';
 const RatingWithReview = ({ totalStars = 5, initialRating = 1 }) => { // 5점 만점, 최소는 1점(초기값)
   const [rating, setRating] = useState(initialRating);
   const [review, setReview] = useState('');
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(()=>{
+    const reviewsRef = ref(database, 'reviews');
+    onValue(reviewsRef, (snapshot) => {
+      const data = snapshot.val();
+      const loadedReviews = [];
+      for (const key in data) {
+        loadedReviews.push({
+          id: key,
+          ...data[key]
+        });
+      }
+      setReviews(loadedReviews);
+    }, (error) => {
+      toast.error('리뷰를 불러오는 데 실패했습니다.');
+    });
+  }, []);
 
   const handleSetRating = (rate) => {
     setRating(rate);
@@ -68,6 +86,15 @@ const RatingWithReview = ({ totalStars = 5, initialRating = 1 }) => { // 5점 �
         ></textarea>
         <button type="submit" className="submit-btn">제출</button>
       </form>
+      <div className="reviews-list">
+        {reviews.map((review) => (
+          <div key={review.id} className="review-item">
+            <div className="review-timestamp">{new Date(review.createdAt).toLocaleString()}</div>
+            <div className="review-rating">별점: {review.rating} / {totalStars}</div>
+            <div className="review-text">{review.review}</div>
+          </div>
+        ))}
+      </div>
       <ToastContainer position="top-center" autoClose={5000} />
     </div>
   );  
