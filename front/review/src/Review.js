@@ -46,7 +46,7 @@ const RatingWithReview = ({ totalStars = 5, initialRating = 0 }) => {
       </div>
       <form onSubmit={handleSubmit} className="review-form">
         <textarea
-          placeholder="Write a review..."
+          placeholder="리뷰를 작성해주세요..."
           value={review}
           onChange={handleReviewChange}
           className="review-textarea"
