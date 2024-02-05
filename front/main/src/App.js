@@ -30,7 +30,7 @@ function App() {
           <ul>
             <li>동작 방식: {item.switch_method}</li>
             <li>스위치: {item.switch_type}</li>
-            <li>피치(pitch): {item.pitch}</li>
+            <li>피치(pitch): {item.switch_pitch}</li>
             <li>키압(바닥압 기준): {item.spring_force}g</li>
             <li>가격: ${item.switch_price}</li>
             <li>제조사: {item.maker}</li>
