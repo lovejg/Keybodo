@@ -20,25 +20,35 @@ function App() {
     }
   };
 
+  const chunkData=(data,chunkSize)=>{
+    const chunks=[];
+    for(let i=0;i<data.length;i+=chunkSize){
+      chunks.push(data.slice(i,i+chunkSize));
+    }
+    return chunks;
+  };
+
+  // 전체 앱에 적용할 기본 스타일
+  const appStyle = {
+    fontFamily: 'Roboto, sans-serif',
+  };
+
   // 화면에 데이터를 렌더링
   return (
-    <div>
-      <ul>
-        {data.map((item) => (
-          <li key={`switch-${item.switch_id}`}>
-          {item.switch_name}
-          <ul>
-            <li>동작 방식: {item.switch_method}</li>
-            <li>스위치: {item.switch_type}</li>
-            <li>피치(pitch): {item.switch_pitch}</li>
-            <li>키압(바닥압 기준): {item.spring_force}g</li>
-            <li>가격: ${item.switch_price}</li>
-            <li>제조사: {item.maker}</li>
-            <li><a href={item.infolink} target="_blank" rel="noopener noreferrer">More Info</a></li>
-          </ul>
-        </li>
-        ))}
-      </ul>
+    <div style={appStyle}>
+      {chunkData(data, 3).map((chunk, index) => ( // 한 줄에 제품 3개씩 보여주기
+        <div key={`chunk-${index}`} style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
+          {chunk.map(item => (
+            <div key={`switch-${item.switch_id}`} style={{ width: '30%', textAlign: 'center', padding: '10px', boxSizing: 'border-box' }}>
+            <img src={`${process.env.PUBLIC_URL}/data/${item.switch_name}.jfif`} alt={item.switch_name} style={{ width: '30%', height: 'auto' }} />
+            <div>{item.switch_name}</div>
+            <div>{item.switch_type}</div>
+            <div>{item.switch_pitch}피치</div>
+            <div>{item.spring_force}g</div>
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
