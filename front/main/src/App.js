@@ -33,6 +33,22 @@ function App() {
     fontFamily: 'Roboto, sans-serif',
   };
 
+  const imageContainerStyle = {
+    height: '200px', // 높이를 고정
+    width: '100%',
+    display: 'flex', // 이미지를 중앙 정렬하기 위해 flex 사용
+    justifyContent: 'center', // 가로 방향으로 중앙 정렬
+    alignItems: 'center', // 세로 방향으로 중앙 정렬
+    overflow: 'hidden'
+  };
+  
+  // 이미지에 적용할 스타일
+  const imageStyle = {
+    maxWidth: '100%',
+    maxHeight: '200px',
+    objectFit: 'contain',
+  };
+
   // 화면에 데이터를 렌더링
   return (
     <div style={appStyle}>
@@ -40,7 +56,9 @@ function App() {
         <div key={`chunk-${index}`} style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
           {chunk.map(item => (
             <div key={`switch-${item.switch_id}`} style={{ width: '30%', textAlign: 'center', padding: '10px', boxSizing: 'border-box' }}>
-            <img src={`${process.env.PUBLIC_URL}/data/${item.switch_name}.jfif`} alt={item.switch_name} style={{ width: '30%', height: 'auto' }} />
+            <div style={imageContainerStyle}>
+              <img src={`${process.env.PUBLIC_URL}/data/${item.switch_name}.jfif`} alt={item.switch_name} style={imageStyle} />
+            </div>
             <div>{item.switch_name}</div>
             <div>{item.switch_type}</div>
             <div>{item.switch_pitch}피치</div>
