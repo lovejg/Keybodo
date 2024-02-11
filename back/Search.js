@@ -19,10 +19,18 @@ app.use(express.json());
 app.post('/api/search', (req,res)=>{
     // 유저로부터 switch_name을 받는다.
     let switchName = req.body.switch_name;
-    switchName = switchName.trim().replace(/ /g,'').split('').join(' ').replace(/ /g,'%');
-    const switchWildCard = '%' + switchName + '%';
+    // 문자열의 공백 제거
+    switchName = switchName.trim().replace(/ /g,'');
+    // 한글, 영어, 숫자만 허용하는 정규 표현식
+    const pattern = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9]+$/;
+    // 유저의 입력값이 유효한지 확인
+    if(!pattern.test(switchName)) {
+      res.send('한글, 영어, 숫자만 검색어에 허용됩니다');
+      return;
+    }
+    switchName = '%' + switchName.split('').join(' ').replace(/ /g,'%') + '%';
 
-  connect.query("SELECT * FROM `V_switches` WHERE switch_name LIKE ?;",[switchWildCard],(error, results)=>{
+  connect.query("SELECT * FROM `V_switches` WHERE switch_name LIKE ?;",[switchName],(error, results)=>{
     if(error) // 예외처리(error)
       throw error;
     res.json(results);
