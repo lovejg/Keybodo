@@ -2,3 +2,8 @@ react 프로젝트 생성: npx create-react-app 프젝이름
 
 sql 켜기: sudo /etc/init.d/mysql start
 socket 잘 있나 확인하기: sudo mysqladmin -u root -p version ==> 여기서 UNIX socket 옆에 .sock 파일 떠있으면 됨
+
+현재 포트
+main front(react): 3000
+API(express): 3001
+search: 3002

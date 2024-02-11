@@ -2,7 +2,7 @@ const express=require('express');
 const mysql=require('mysql');
 
 const app=express();
-const port=3002; // use localhost:3001 (react가 3000을 써서 3001로 변경)
+const port=3002;
 const cors = require('cors'); // 혹시 모를 정책 대비
 
 const connect=mysql.createPool({
