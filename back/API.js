@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/api/data', (req,res)=>{
-  connect.query('SELECT t_sw.switch_name,t_sw.switch_method,t_sw.switch_type,t_sp.gc_sf as spring_force,t_sw.switch_pitch,t_sw.switch_price,t_sw.maker,t_sw.infolink FROM `T_switch` t_sw JOIN (SELECT switch_id,GROUP_CONCAT(spring_force) as gc_sf FROM `T_spring` GROUP BY switch_id) t_sp ON t_sw.switch_id = t_sp.switch_id;', (error, results)=>{
+  connect.query('SELECT * FROM V_switches WHERE switch_method LIKE "기계식";', (error, results)=>{
     if(error) // 예외처리(error)
       throw error;
     res.json(results);
