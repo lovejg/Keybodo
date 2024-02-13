@@ -1,7 +1,7 @@
 use keybodo;
-DROP Table `T_keyboard`;
-DROP Table `T_switch`;
-DROP Table `T_barebone`;
+# DROP Table `T_keyboard`;
+# DROP Table `T_switch`;
+# DROP Table `T_barebone`;
 
 
 CREATE Table T_switch (
