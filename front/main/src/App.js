@@ -7,8 +7,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/detail/:id" element={<Info />} />
+        <Route path="/" element={<Main />} /> {/* 메인 페이지 라우팅 */}
+        <Route path="/info/:id" element={<Info />} /> {/* 상세 페이지 라우팅 */}
       </Routes>
     </Router>
   );

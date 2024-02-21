@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios'; // axios 사용해서 API와 연결
+import axios from 'axios';
 
 function Info() {
-  const [data, setData] = useState([]); // 데이터를 저장할 상태 선언
+  const [data, setData] = useState({}); // 데이터를 저장할 상태 선언
   let {id}=useParams();
 
   useEffect(() => {
@@ -19,6 +19,7 @@ function Info() {
     fetchData();
   }, [id]);
 
+  // error 처리
   if (!data) {
     return <div>Loading...</div>;
   }

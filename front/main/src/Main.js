@@ -35,11 +35,11 @@ function Main() {
   };
 
   const imageContainerStyle = {
-    height: '200px', // 높이를 고정
+    height: '200px',
     width: '100%',
-    display: 'flex', // 이미지를 중앙 정렬하기 위해 flex 사용
-    justifyContent: 'center', // 가로 방향으로 중앙 정렬
-    alignItems: 'center', // 세로 방향으로 중앙 정렬
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     overflow: 'hidden'
   };
   
