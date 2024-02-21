@@ -1,43 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 function Info() {
-  const [data, setData] = useState({}); // 데이터를 저장할 상태 선언
-  let {id}=useParams();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3001/api/data/${id}`);
-        setData(response.data); // 단일 아이템 데이터를 상태에 저장
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchData();
-  }, [id]);
-
-  // error 처리
-  if (!data) {
-    return <div>Loading...</div>;
-  }
+  // Main.js에서 state={{info:item}} 으로 받은 state를 받아와서
+  // item에 저장 후 return을 이용해서 화면에 렌더링
+  const location = useLocation();
+  const item = location.state?.info;
 
   // 화면에 데이터를 렌더링
   return (
     <div>
       <ul>
-          <li key={`switch-${data.switch_id}`}>
-          {data.switch_name}
+        <li key={`switch-${item.switch_name}`}>
+          {item.switch_name}
           <ul>
-            <li>동작 방식: {data.switch_method}</li>
-            <li>스위치: {data.switch_type}</li>
-            <li>피치(pitch): {data.switch_pitch}</li>
-            <li>키압(바닥압 기준): {data.spring_force}g</li>
-            <li>가격: ${data.switch_price}</li>
-            <li>제조사: {data.maker}</li>
-            <li><a href={data.infolink} target="_blank" rel="noopener noreferrer">More Info</a></li>
+            <li>동작 방식: {item.switch_method}</li>
+            <li>스위치: {item.switch_type}</li>
+            <li>피치(pitch): {item.switch_pitch}</li>
+            <li>키압(바닥압 기준): {item.spring_force}g</li>
+            <li>가격: ${item.switch_price}</li>
+            <li>제조사: {item.maker}</li>
+            <li>
+              <a href={item.infolink} target="_blank" rel="noopener noreferrer">
+                More Info
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
