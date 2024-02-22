@@ -9,7 +9,7 @@ function Category(props) {
   };
   const onClick = async () => {
     if (search.trim() === "") {
-      console.log("입력된 대화문이 없습니다. 전송을 취소합니다.");
+      alert("검색어를 입력해주세요");
       return;
     }
 
