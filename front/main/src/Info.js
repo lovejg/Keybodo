@@ -28,7 +28,7 @@ function Info() {
           </ul>
         </li>
       </ul>
-      <Link to="/review" state={{ info: item }}>리뷰 작성하기</Link>
+      <Link to="/info/review" state={{ info: item }}>리뷰 작성하기</Link>
     </div>
   );
 }
