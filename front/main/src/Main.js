@@ -67,9 +67,7 @@ function Main() {
             }}
           >
             {chunk.map((item) => (
-              <div
-                key={`switch-${item.switch_name}`}
-                style={{
+              <div key={`switch-${item.switch_name}`} style={{
                   width: "30%",
                   textAlign: "center",
                   padding: "10px",
@@ -77,12 +75,9 @@ function Main() {
                 }}
               >
                 {/* 이미지 눌렀을 때 link연결하도록 변경 */}
-                <Link
-                  to="./Info"
-                  // 현재 api로 받은 데이터를 /Info로 넘김
+                <Link to="./Info" // 현재 api로 받은 데이터를 /Info로 넘김
                   state={{ info: item }}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
+                  style={{ textDecoration: "none", color: "black" }}>
                   <div style={imageContainerStyle}>
                     <img
                       src={`${process.env.PUBLIC_URL}/data/${item.switch_name}.jfif`}

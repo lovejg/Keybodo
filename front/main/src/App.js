@@ -9,7 +9,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} /> {/* 메인 페이지 라우팅 */}
         <Route path="/info" element={<Info />} /> {/* 상세 페이지 라우팅 */}
-        <Route path="/review" element={<Review />} /> {/* 리뷰 페이지 라우팅 */}
       </Routes>
     </Router>
   );
