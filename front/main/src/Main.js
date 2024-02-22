@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; // axios 사용해서 API와 연결
+import Category from "./Categories";
 
 function Main() {
   const [data, setData] = useState([]); // 데이터를 저장할 상태 선언
@@ -53,6 +54,7 @@ function Main() {
   // 화면에 데이터를 렌더링
   return (
     <div style={appStyle}>
+      <Category setData={setData} />
       {chunkData(data, 3).map(
         (
           chunk,
@@ -67,7 +69,9 @@ function Main() {
             }}
           >
             {chunk.map((item) => (
-              <div key={`switch-${item.switch_name}`} style={{
+              <div
+                key={`switch-${item.switch_name}`}
+                style={{
                   width: "30%",
                   textAlign: "center",
                   padding: "10px",
@@ -75,9 +79,11 @@ function Main() {
                 }}
               >
                 {/* 이미지 눌렀을 때 link연결하도록 변경 */}
-                <Link to="./Info" // 현재 api로 받은 데이터를 /Info로 넘김
+                <Link
+                  to="./Info" // 현재 api로 받은 데이터를 /Info로 넘김
                   state={{ info: item }}
-                  style={{ textDecoration: "none", color: "black" }}>
+                  style={{ textDecoration: "none", color: "black" }}
+                >
                   <div style={imageContainerStyle}>
                     <img
                       src={`${process.env.PUBLIC_URL}/data/${item.switch_name}.jfif`}
