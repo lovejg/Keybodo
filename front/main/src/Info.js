@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 function Info() {
   // Main.js에서 state={{info:item}} 으로 받은 state를 받아와서
@@ -28,6 +28,7 @@ function Info() {
           </ul>
         </li>
       </ul>
+      <Link to="/review" state={{ info: item }}>리뷰 작성하기</Link>
     </div>
   );
 }
