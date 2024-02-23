@@ -12,7 +12,7 @@ const [reviews, setReviews] = useState([]); // DB에 있는 리뷰 띄우기
 const [sortOrder, setSortOrder] = useState('newest'); // 리뷰 정렬 순서
 
 useEffect(()=>{
-  const reviewsRef = ref(database, 'reviews');
+  const reviewsRef = ref(database, `${item.switch_name}`);
   onValue(reviewsRef, (snapshot) => {
     const data = snapshot.val();
     const loadedReviews = [];
@@ -46,7 +46,7 @@ const handleReviewChange = (e) => {
 const handleSubmit = (e) => {
   e.preventDefault();
   // Firebase Realtime Database에 리뷰 데이터 저장
-  const reviewRef = push(ref(database, 'reviews')); // 'reviews'는 데이터를 저장할 경로
+  const reviewRef = push(ref(database, `${item.switch_name}`)); // 리뷰 데이터 저장 경로(db에서의)
   set(reviewRef, {
     rating,
     review,

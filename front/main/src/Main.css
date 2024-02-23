@@ -1,0 +1,8 @@
+.move {
+    color: #007bff;
+    font-size: 20px;
+    text-decoration: none; /* 밑줄 없애기 */
+    display: block;
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
