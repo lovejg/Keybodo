@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; // axios 사용해서 API와 연결
-import Category from "./Categories";
+import Category from "../components/Categories";
 
 function Main() {
   const [data, setData] = useState([]); // 데이터를 저장할 상태 선언
