@@ -29,6 +29,7 @@ function Main() {
     }
     return chunks;
   };
+  console.log(data);
 
   // 전체 앱에 적용할 기본 스타일
   const appStyle = {
@@ -80,7 +81,7 @@ function Main() {
               >
                 {/* 이미지 눌렀을 때 link연결하도록 변경 */}
                 <Link
-                  to="./Info" // 현재 api로 받은 데이터를 /Info로 넘김
+                  to={`/info/${item.switch_id}`} // 현재 api로 받은 데이터를 /Info로 넘김
                   state={{ info: item }}
                   style={{ textDecoration: "none", color: "black" }}
                 >

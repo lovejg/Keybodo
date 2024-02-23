@@ -29,7 +29,11 @@ function Info() {
           </ul>
         </li>
       </ul>
-      <Link to="/info/review" className="move" state={{ info: item }}>
+      <Link
+        to={`/review/${item.switch_id}`}
+        className="move"
+        state={{ info: item }}
+      >
         리뷰 작성하기
       </Link>
       <Link to="/" className="move">

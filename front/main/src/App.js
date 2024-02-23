@@ -9,8 +9,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Main />} /> {/* 메인 페이지 라우팅 */}
-        <Route path="/info" element={<Info />} /> {/* 상세 페이지 라우팅 */}
-        <Route path="/info/review" element={<Review />} />{" "}
+        <Route path="/info/:id" element={<Info />} /> {/* 상세 페이지 라우팅 */}
+        <Route path="/review/:id" element={<Review />} />
         {/* 리뷰 페이지 라우팅 */}
       </Routes>
     </Router>

@@ -96,7 +96,11 @@ const RatingWithReview = ({ totalStars = 5, initialRating = 1 }) => {
       >
         소중한 리뷰 부탁드립니다!
       </h1>
-      <Link to="/info" className="move" state={{ info: item }}>
+      <Link
+        to={`/info/${item.switch_id}`}
+        className="move"
+        state={{ info: item }}
+      >
         상세 페이지로 돌아가기
       </Link>
       <div className="rating">
