@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; // axios 사용해서 API와 연결
 import Category from "../components/Categories";
+import Switches from "../components/Switches";
 
 function Main() {
   const [data, setData] = useState([]); // 데이터를 저장할 상태 선언
@@ -29,7 +30,6 @@ function Main() {
     }
     return chunks;
   };
-  console.log(data);
 
   // 전체 앱에 적용할 기본 스타일
   const appStyle = {
@@ -51,57 +51,20 @@ function Main() {
     maxHeight: "200px",
     objectFit: "contain",
   };
-
   // 화면에 데이터를 렌더링
   return (
     <div style={appStyle}>
-      <Category setData={setData} />
-      {chunkData(data, 3).map(
-        (
-          chunk,
-          index // 한 줄에 제품 3개씩 보여주기
-        ) => (
-          <div
-            key={`chunk-${index}`}
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              marginBottom: "20px",
-            }}
-          >
-            {chunk.map((item) => (
-              <div
-                key={`switch-${item.switch_name}`}
-                style={{
-                  width: "30%",
-                  textAlign: "center",
-                  padding: "10px",
-                  boxSizing: "border-box",
-                }}
-              >
-                {/* 이미지 눌렀을 때 link연결하도록 변경 */}
-                <Link
-                  to={`/info/${item.switch_id}`} // 현재 api로 받은 데이터를 /Info로 넘김
-                  state={{ info: item }}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <div style={imageContainerStyle}>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/data/${item.switch_name}.jfif`}
-                      alt={item.switch_name}
-                      style={imageStyle}
-                    />
-                  </div>
-                </Link>
-                <div>{item.switch_name}</div>
-                <div>{item.switch_type}</div>
-                <div>{item.switch_pitch}피치</div>
-                <div>{item.spring_force}g</div>
-              </div>
-            ))}
-          </div>
-        )
-      )}
+      <Category setData={setData} switchInfo={data} />
+      {data.map((item) => (
+        <Switches
+          key={item.switch_id}
+          id={item.switch_id}
+          name={item.switch_name}
+          type={item.switch_type}
+          pitch={item.switch_pitch}
+          force={item.spring_force}
+        />
+      ))}
     </div>
   );
 }

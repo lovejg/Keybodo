@@ -3,7 +3,8 @@ import { database } from "../firebase_DB";
 import { ref, push, set, serverTimestamp, onValue } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useParams } from "react-router-dom";
+import axios from "axios";
 import "./Review.css";
 import "./Main.css";
 
@@ -14,8 +15,22 @@ const RatingWithReview = ({ totalStars = 5, initialRating = 1 }) => {
   const [reviews, setReviews] = useState([]); // DB에 있는 리뷰 띄우기
   const [sortOrder, setSortOrder] = useState("newest"); // 리뷰 정렬 순서
 
-  const location = useLocation();
-  const item = location.state?.info;
+  const switchId = useParams();
+  const [item, setItem] = useState([]);
+  const getSwitchInfo = async () => {
+    try {
+      const response = await axios.post("http://localhost:3003/api/info", {
+        switch_id: switchId.id,
+      });
+      setItem(response.data[0]);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    getSwitchInfo();
+  }, []);
 
   useEffect(() => {
     const reviewsRef = ref(database, `${item.switch_name}`);
@@ -94,7 +109,7 @@ const RatingWithReview = ({ totalStars = 5, initialRating = 1 }) => {
           color: "black",
         }}
       >
-        소중한 리뷰 부탁드립니다!
+        {`${item.switch_name} 리뷰`}
       </h1>
       <Link
         to={`/info/${item.switch_id}`}

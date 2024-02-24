@@ -16,7 +16,7 @@ const connect = mysql.createPool({
 app.use(cors());
 app.use(express.json());
 
-app.post("/api/search", (req, res) => {
+app.post("/api/search/", (req, res) => {
   // 유저로부터 switch_name을 받는다.
   let switchName = req.body.switch_name;
   if (switchName === "") switchName = "%";
