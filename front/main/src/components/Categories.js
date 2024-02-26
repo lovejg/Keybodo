@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"; // axios 사용해서 API와 연결
+import styles from "./Categories.module.css";
 
 function Category(props) {
   const [search, setSearch] = React.useState("");
@@ -22,16 +23,17 @@ function Category(props) {
   };
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <label>
-          <input
-            type="text"
-            value={search}
-            placeholder="eg.체리 스위치"
-            onChange={onChange}
-          />
-        </label>
-        <button type="submit">검색</button>
+      <form onSubmit={onSubmit} className={styles.search_bar}>
+        <input
+          className={styles.search_bar_input}
+          type="search"
+          value={search}
+          placeholder="eg.체리 스위치"
+          onChange={onChange}
+        />
+        <button type="submit" className={styles.search_icon}>
+          검색
+        </button>
       </form>
     </div>
   );

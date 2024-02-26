@@ -1,8 +1,41 @@
 .move {
-    color: #007bff;
-    font-size: 20px;
-    text-decoration: none; /* 밑줄 없애기 */
-    display: block;
-    margin-bottom: 15px;
-    margin-left: 20px;
+  color: #007bff;
+  font-size: 20px;
+  text-decoration: none; /* 밑줄 없애기 */
+  display: block;
+  margin-bottom: 15px;
+  margin-left: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  /* border: 0.5rem solid red; */
+  width: 1200px;
+  margin: 0rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.search {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+  padding: 0 0.5rem;
+  margin-top: 5rem;
+  /* border: 0.5rem dotted violet; */
+}
+
+.logo {
+  /* border: 1px solid black; */
+  width: 10rem;
+  height: 100%;
+  text-align: center;
+  line-height: 60px;
 }

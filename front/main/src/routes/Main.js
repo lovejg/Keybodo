@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"; // axios 사용해서 API와 연결
 import Category from "../components/Categories";
 import Switches from "../components/Switches";
+import "./Main.css";
 
 function Main() {
   const [data, setData] = useState([]); // 데이터를 저장할 상태 선언
@@ -53,8 +54,11 @@ function Main() {
   };
   // 화면에 데이터를 렌더링
   return (
-    <div style={appStyle}>
-      <Category setData={setData} switchInfo={data} />
+    <div style={appStyle} className="container">
+      <div className="search">
+        <h1 className="logo">keyboDB</h1>
+        <Category setData={setData} switchInfo={data} />
+      </div>
       {data.map((item) => (
         <Switches
           key={item.switch_id}
